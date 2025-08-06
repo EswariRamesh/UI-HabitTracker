@@ -53,10 +53,8 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: 2cf2bcee-68a9-4ea8-98db-1cf8ce24f2cb
-          client-secret: YdN8Q~s-A53GvjP1eK.INHN8ATj7tCTo01zA6c2r
-          tenant-id: db3a2776-2760-4a26-8342-be6fda276aa3
-          subscription-id: 4085a767-95fe-444d-81d7-907bd48d4354
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          auth-type: 'service-principal'
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
@@ -64,4 +62,3 @@ jobs:
           app-name: 'Frontend'
           slot-name: 'Production'
           package: dist/mytestapp/browser
-
