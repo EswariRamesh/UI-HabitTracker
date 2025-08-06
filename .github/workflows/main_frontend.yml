@@ -37,7 +37,6 @@ jobs:
           name: angular-app
           path: dist/mytestapp/browser
 
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -54,9 +53,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_7920D62A2C0B45DAA02261E41BE359D9 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_83EBFC463769434CB68A7A50379CC56D }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_5591E6F2EB01497780CAA8670E3C4D7C }}
+          client-id: 2cf2bcee-68a9-4ea8-98db-1cf8ce24f2cb
+          tenant-id: db3a2776-2760-4a26-8342-be6fda276aa3
+          subscription-id: 4085a767-95fe-444d-81d7-907bd48d4354
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
@@ -64,9 +63,3 @@ jobs:
           app-name: 'Frontend'
           slot-name: 'Production'
           package: dist/mytestapp/browser
-
-
-
-
-
-
