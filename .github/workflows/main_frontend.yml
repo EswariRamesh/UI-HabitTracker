@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: angular-app
-          path: dist/mytestapp
+          path: dist/mytestapp/browser
 
 
   deploy:
@@ -64,6 +64,7 @@ jobs:
           app-name: 'Frontend'
           slot-name: 'Production'
           package: dist/mytestapp/browser
+
 
 
 
