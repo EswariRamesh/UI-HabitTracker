@@ -61,5 +61,7 @@ jobs:
         with:
           app-name: 'Frontend'
           slot-name: 'Production'
-          package: .
+          package: dist/mytestapp/browser
+
+
           
