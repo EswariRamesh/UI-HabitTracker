@@ -1,0 +1,43 @@
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <i class="fas fa-book-open"></i>
+    </div>
+    <nav>
+      <a href="#" class="menu-item active"><i class="fas fa-gamepad"></i> Games</a>
+      <a href="#" class="menu-item"><i class="fas fa-book"></i> Stories</a>
+      <a href="#" class="menu-item"><i class="fas fa-user"></i> Profile</a>
+      <a href="#" class="menu-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="header">
+      <h1>Dashboard</h1>
+      <span class="welcome">Welcome, {{ userName }}</span>
+    </header>
+
+    <section class="tiles">
+      <div class="tile story">
+        <i class="fas fa-book"></i>
+        <h2>Story Quizzes</h2>
+        <p>Read & Quiz</p>
+      </div>
+      <div class="tile math">
+        <i class="fas fa-gamepad"></i>
+        <h2>Math Games</h2>
+        <p>Math Fun</p>
+      </div>
+      <div class="tile badges">
+        <i class="fas fa-trophy"></i>
+        <h2>Badges Earned</h2>
+      </div>
+      <div class="tile progress">
+        <i class="fas fa-chart-bar"></i>
+        <h2>Progress Report</h2>
+      </div>
+    </section>
+  </main>
+</div>
