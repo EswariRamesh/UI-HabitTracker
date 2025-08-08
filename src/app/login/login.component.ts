@@ -31,7 +31,7 @@ export class LoginComponent {
       .subscribe({
         next: (res: any) => {
           console.log('Login API response:', res); // Debug log
-          this.message = 'Login successful!';
+          this.message = 'Login successful!'+ JSON.stringify(res);
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {
