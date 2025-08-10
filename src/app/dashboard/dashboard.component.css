@@ -95,3 +95,10 @@ nav {
   background-color: #c6f6d5;
   min-height: 180px; /* A bit taller to avoid clipping */
 }
+.under-development-message {
+  margin-top: 20px;
+  color: #d9534f; /* Bootstrap's danger color */
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+}

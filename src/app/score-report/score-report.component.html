@@ -1,0 +1,5 @@
+<canvas baseChart
+  [datasets]="[{ data: scores.map(s => s.value), label: 'Scores' }]"
+  [labels]="scores.map(s => s.userName)"
+  [chartType]="'bar'">
+</canvas>

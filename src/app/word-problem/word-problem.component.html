@@ -1,0 +1,13 @@
+<div class="word-problem-wrapper" *ngIf="currentIndex < problems.length; else finished">
+  <h3>Question {{ currentIndex + 1 }} of {{ problems.length }}</h3>
+  <p>{{ problems[currentIndex]?.question }}</p>
+  <input [(ngModel)]="answer" placeholder="Your answer" />
+  <button (click)="submitAnswer()">Submit</button>
+</div>
+
+<ng-template #finished>
+  <div class="word-problem-wrapper finished">
+    <h3>All questions done!</h3>
+    <p>Your score: {{ score }}</p>
+  </div>
+</ng-template>

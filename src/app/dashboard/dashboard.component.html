@@ -5,10 +5,19 @@
       <i class="fas fa-book-open"></i>
     </div>
     <nav>
-      <a href="#" class="menu-item active"><i class="fas fa-gamepad"></i> Games</a>
-      <a href="#" class="menu-item"><i class="fas fa-book"></i> Stories</a>
-      <a href="#" class="menu-item"><i class="fas fa-user"></i> Profile</a>
-      <a href="#" class="menu-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      <a href="#" class="menu-item active" (click)="showUnderDevelopment($event)">
+        <i class="fas fa-gamepad"></i> Games
+      </a>
+      <a href="#" class="menu-item" (click)="showUnderDevelopment($event)">
+        <i class="fas fa-book"></i> Stories
+      </a>
+      <a href="#" class="menu-item" (click)="showUnderDevelopment($event)">
+        <i class="fas fa-user"></i> Profile
+      </a>
+      <a href="#" class="menu-item" (click)="logout($event)">
+  <i class="fas fa-sign-out-alt"></i> Logout
+</a>
+
     </nav>
   </aside>
 
@@ -19,25 +28,36 @@
       <span class="welcome">Welcome, {{ userName }}</span>
     </header>
 
+    <!-- Under development message here -->
+    <div *ngIf="underDevelopmentMessage" class="under-development-message">
+      {{ underDevelopmentMessage }}
+    </div>
+
     <section class="tiles">
-      <div class="tile story">
+      <div class="tile story" (click)="openWordProblem()">
         <i class="fas fa-book"></i>
         <h2>Story Quizzes</h2>
         <p>Read & Quiz</p>
       </div>
-      <div class="tile math">
+      <div class="tile math" (click)="showUnderDevelopment($event)">
         <i class="fas fa-gamepad"></i>
         <h2>Math Games</h2>
         <p>Math Fun</p>
       </div>
-      <div class="tile badges">
+      <div class="tile badges" (click)="showUnderDevelopment($event)">
         <i class="fas fa-trophy"></i>
         <h2>Badges Earned</h2>
       </div>
-      <div class="tile progress">
+      <div class="tile progress" (click)="showUnderDevelopment($event)">
         <i class="fas fa-chart-bar"></i>
         <h2>Progress Report</h2>
       </div>
     </section>
+    <!-- Show quiz when quiz is open -->
+  <div *ngIf="showWordProblem">
+    <button class="back-btn" (click)="closeWordProblem()">← Back to Dashboard</button>
+    <app-word-problem></app-word-problem>
+  </div>
   </main>
+
 </div>

@@ -31,6 +31,9 @@ export class LoginComponent {
       .subscribe({
         next: (res: any) => {
           console.log('Login API response:', res); // Debug log
+          // ✅ Save username to localStorage
+        localStorage.setItem('userName', this.username);
+
           this.message = 'Login successful!'+ JSON.stringify(res);
           this.router.navigate(['/dashboard']);
         },
