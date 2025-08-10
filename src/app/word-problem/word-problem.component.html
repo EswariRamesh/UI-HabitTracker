@@ -1,13 +1,31 @@
-<div class="word-problem-wrapper" *ngIf="currentIndex < problems.length; else finished">
-  <h3>Question {{ currentIndex + 1 }} of {{ problems.length }}</h3>
-  <p>{{ problems[currentIndex]?.question }}</p>
-  <input [(ngModel)]="answer" placeholder="Your answer" />
-  <button (click)="submitAnswer()">Submit</button>
+<!-- Show while waiting for API -->
+<div *ngIf="loading" class="word-problem-wrapper">
+  <h3>Loading quiz...</h3>
+  <p>Please wait while we fetch your questions.</p>
 </div>
 
-<ng-template #finished>
-  <div class="word-problem-wrapper finished">
-    <h3>All questions done!</h3>
-    <p>Your score: {{ score }}</p>
+<!-- Show questions or finished once data is loaded -->
+<div *ngIf="!loading">
+  <div class="word-problem-wrapper" *ngIf="currentIndex < problems.length; else finished">
+    <h3>Question {{ currentIndex + 1 }} of {{ problems.length }}</h3>
+    <p>{{ problems[currentIndex].question }}</p>
+
+    <input
+      [(ngModel)]="answer"
+      type="text"
+      placeholder="Your answer"
+      aria-label="Your answer"
+    />
+
+    <button (click)="submitAnswer()" [disabled]="!answer.trim()">
+      Submit
+    </button>
   </div>
-</ng-template>
+
+  <ng-template #finished>
+    <div class="word-problem-wrapper finished">
+      <h3>All questions done!</h3>
+      <p>Your score: {{ score }}</p>
+    </div>
+  </ng-template>
+</div>

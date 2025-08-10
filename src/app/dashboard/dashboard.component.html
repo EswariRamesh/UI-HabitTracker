@@ -15,25 +15,25 @@
         <i class="fas fa-user"></i> Profile
       </a>
       <a href="#" class="menu-item" (click)="logout($event)">
-  <i class="fas fa-sign-out-alt"></i> Logout
-</a>
-
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
     </nav>
   </aside>
 
   <!-- Main Content -->
   <main class="main-content">
     <header class="header">
-      <h1>Dashboard</h1>
+      <h1>{{ showWordProblem ? 'Story Quizzes' : 'Dashboard' }}</h1>
       <span class="welcome">Welcome, {{ userName }}</span>
     </header>
 
-    <!-- Under development message here -->
+    <!-- Under development message -->
     <div *ngIf="underDevelopmentMessage" class="under-development-message">
       {{ underDevelopmentMessage }}
     </div>
 
-    <section class="tiles">
+    <!-- Tiles Section - only when NOT in quiz -->
+    <section class="tiles" *ngIf="!showWordProblem">
       <div class="tile story" (click)="openWordProblem()">
         <i class="fas fa-book"></i>
         <h2>Story Quizzes</h2>
@@ -53,11 +53,10 @@
         <h2>Progress Report</h2>
       </div>
     </section>
-    <!-- Show quiz when quiz is open -->
-  <div *ngIf="showWordProblem">
-    <button class="back-btn" (click)="closeWordProblem()">← Back to Dashboard</button>
-    <app-word-problem></app-word-problem>
-  </div>
-  </main>
 
+    <!-- Quiz View -->
+    <div *ngIf="showWordProblem" class="quiz-wrapper">
+      <app-word-problem></app-word-problem>
+    </div>
+  </main>
 </div>
