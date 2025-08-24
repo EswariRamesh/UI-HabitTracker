@@ -1,0 +1,17 @@
+<div class="badge-icons">
+  <div
+    *ngFor="let badge of badges"
+    class="badge-icon"
+    [style.backgroundColor]="badge.color"
+    (click)="selectBadgeCategory(badge.name.replace(' ', '').toLowerCase())"
+    [title]="badge.description"
+  >
+    <i class="{{badge.icon}}"></i>
+    <span>{{ badge.name }}</span>
+  </div>
+</div>
+
+<div *ngIf="selectedCategory === 'storytellerstar'">
+  <app-storyteller-badges [userId]="userId || 0"></app-storyteller-badges>
+</div>
+

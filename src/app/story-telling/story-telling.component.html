@@ -1,0 +1,44 @@
+<div class="story-telling-wrapper">
+  <h2>📖 Story Telling</h2>
+
+  <div *ngIf="story">
+    <!-- Show title always -->
+    <h3 class="story-title">{{ story.title }}</h3>
+
+    <!-- Hide story text once typing starts -->
+    <p class="story-text" *ngIf="!userRetelling.trim()">{{ story.storyText }}</p>
+
+    <div class="btn-row">
+      <button (click)="playStory()" class="audio-btn">🔊 Play Story</button>
+      <button (click)="toggleRecording()" class="record-btn">
+        🎙️ {{ recognizing ? 'Stop Recording' : 'Start Recording' }}
+      </button>
+    </div>
+
+    <h4 class="your-turn">Your Turn</h4>
+    <textarea
+      [(ngModel)]="userRetelling"
+      rows="5"
+      class="story-input"
+      placeholder="Start retelling the story in your own words..."
+    ></textarea>
+
+    <div class="btn-row">
+      <button (click)="submitAttempt()" class="submit-btn">✅ Submit</button>
+      <button (click)="loadStory()" class="nav-btn">🔄 New Story</button>
+    </div>
+  </div>
+
+  <div *ngIf="result" class="result-box">
+    <h4>Result</h4>
+    <p>Matched Words: {{ result.matchedWords }} / {{ result.totalWords }}</p>
+    <p>Score: {{ result.score }}%</p>
+
+    <div *ngIf="result.score >= 70" class="feedback success">
+      🎉 Great Job! You passed!
+    </div>
+    <div *ngIf="result.score < 70" class="feedback warning">
+      Keep practicing, you’ll do better next time!
+    </div>
+  </div>
+</div>

@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router'; // Added RouterModule
+import { environment } from '../../environments/environment';
+
 
 @Component({
   selector: 'app-login',
@@ -27,12 +29,16 @@ export class LoginComponent {
   onLogin() {
     const payload = { username: this.username, password: this.password };
 
-    this.http.post('https://habittrackerapi-ambqgtbdchh2brhc.uksouth-01.azurewebsites.net/api/auth/login', payload)
+    // this.http.post('https://habittrackerapi-ambqgtbdchh2brhc.uksouth-01.azurewebsites.net/api/auth/login', payload)
+    this.http.post(`${environment.apiUrl}/auth/login`, payload)
       .subscribe({
         next: (res: any) => {
           console.log('Login API response:', res); // Debug log
           // ✅ Save username to localStorage
         localStorage.setItem('userName', this.username);
+        if (res.user && res.user.id) {
+          localStorage.setItem('userId', res.user.id.toString());
+        }
 
           this.message = 'Login successful!'+ JSON.stringify(res);
           this.router.navigate(['/dashboard']);

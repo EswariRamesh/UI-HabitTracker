@@ -1,0 +1,106 @@
+.loading, .error {
+  font-size: 1.2em;
+  text-align: center;
+  margin: 20px;
+}
+
+.attempt-card {
+  background: #e0f7fa;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun kid friendly font */
+}
+
+.date {
+  font-weight: bold;
+  color: #00796b;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.score-bar-container {
+  position: relative;
+  background: #b2dfdb;
+  border-radius: 12px;
+  height: 28px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.score-bar {
+  height: 100%;
+  border-radius: 12px;
+  transition: width 1s ease-in-out;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+}
+
+.score-label {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  line-height: 28px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  pointer-events: none;
+}
+
+.summary {
+  font-size: 1em;
+  color: #004d40;
+}
+.streak {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff5722;
+  margin-bottom: 12px;
+  text-shadow: 0 0 6px rgba(255, 87, 34, 0.7);
+  animation: fire-glow 1.2s infinite alternate;
+}
+
+@keyframes fire-glow {
+  0% { text-shadow: 0 0 6px rgba(255, 87, 34, 0.6); }
+  100% { text-shadow: 0 0 16px rgba(255, 152, 0, 1); }
+}
+
+/* Streak Banner */
+.streak-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #ff512f, #dd2476);
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 12px;
+  margin: 15px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  animation: pulse-glow 1.5s infinite;
+  height: 10px; /* or your desired width */
+}
+
+.streak-banner .fire {
+  font-size: 1.6rem;
+  margin: 0 8px;
+  animation: bounce 1s infinite alternate;
+}
+
+.streak-banner .text {
+  text-shadow: 0 0 10px rgba(255, 200, 0, 0.8);
+}
+
+/* Glow Pulse Animation */
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 10px #ff7b00, 0 0 20px #ff7b00; }
+  50% { box-shadow: 0 0 20px #ff4500, 0 0 30px #ff2200; }
+  100% { box-shadow: 0 0 10px #ff7b00, 0 0 20px #ff7b00; }
+}
+
+/* Fire Bounce */
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
+}

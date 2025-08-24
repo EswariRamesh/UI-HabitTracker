@@ -1,0 +1,46 @@
+.badge-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centers badges horizontally */
+  gap: 1rem; /* space between badges */
+  padding: 1rem;
+  max-width: 600px; /* optional max width to keep content centered */
+  margin: 0 auto; /* center container horizontally */
+}
+
+.badge-icon {
+  flex: 1 0 120px; /* grow, shrink, basis - flexible width and minimum */
+  max-width: 150px;
+  background-color: var(--badge-bg, #eee); /* fallback if no inline style */
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.badge-icon i {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+.badge-icon span {
+  font-weight: 600;
+  color: #222;
+}
+
+.badge-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+
+/* Responsive adjustments for smaller devices */
+@media (max-width: 480px) {
+  .badge-icon {
+    flex: 1 0 100%; /* full width on small screens */
+    max-width: none;
+  }
+}

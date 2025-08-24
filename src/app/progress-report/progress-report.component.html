@@ -1,0 +1,39 @@
+<div *ngIf="loading" class="loading">Loading progress report...</div>
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+<div *ngIf="!loading && !errorMessage && attempts.length">
+  <h2>Progress Report</h2>
+
+  <!-- 🔥 Streak message only ONCE at the top -->
+ <!-- 🔥 Streak Badge -->
+<div *ngIf="streakCount >= 1" class="streak-banner">
+  <span class="fire">🔥</span>
+  <span class="text">Streak: {{ streakCount }} in a row!</span>
+  <span class="fire">🔥</span>
+</div>
+
+
+  <div class="attempt-card" *ngFor="let attempt of attempts">
+    <div class="date">{{ attempt.attemptDate | date:'mediumDate' }}</div>
+
+    <div class="score-bar-container" 
+         [attr.aria-label]="'Score percentage: ' + (attempt.scorePercentage | number:'1.0-0') + '%'">
+      <div class="score-bar"
+           [style.width.%]="attempt.scorePercentage"
+           [style.background]="getColor(attempt.scorePercentage)">
+      </div>
+      <div class="score-label">
+        {{ attempt.scorePercentage | number:'1.0-0' }} %
+        <span *ngIf="attempt.scorePercentage >= 20">🔥</span>
+      </div>
+    </div>
+
+    <div class="summary">
+      Correct: {{ attempt.correctAnswers }} / {{ attempt.totalQuestions }}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!loading && !errorMessage && !attempts.length">
+  No progress data available.
+</div>

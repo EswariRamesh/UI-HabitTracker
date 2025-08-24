@@ -13,19 +13,46 @@
     <input
       [(ngModel)]="answer"
       type="text"
-      placeholder="Your answer"
+      placeholder="Type your answer"
       aria-label="Your answer"
+      [disabled]="showFeedback"
     />
 
-    <button (click)="submitAnswer()" [disabled]="!answer.trim()">
-      Submit
-    </button>
+    <div class="btn-row">
+      <button (click)="previous()" [disabled]="currentIndex === 0 || showFeedback" class="nav-btn">
+        Previous
+      </button>
+
+      <button *ngIf="!showFeedback" (click)="submitAnswer()" [disabled]="!answer.trim()" class="submit-btn">
+        ✅ Check my answer
+      </button>
+
+      <button *ngIf="showFeedback" (click)="nextQuestion()" class="nav-btn">
+        Next
+      </button>
+    </div>
+
+    <!-- Feedback message -->
+    <div *ngIf="showFeedback" class="feedback-box" [ngClass]="{'correct': isCorrect, 'incorrect': !isCorrect}">
+      <img *ngIf="isCorrect" src="assets/star.gif" alt="Star" class="star-img" />
+      <span *ngIf="isCorrect">🎉 Great job! You got it right!</span>
+      <span *ngIf="!isCorrect">
+        Oops, not quite. The correct answer is <b>{{ problems[currentIndex].answer }}</b>.<br>
+        Try the next one!
+      </span>
+    </div>
   </div>
 
+  <!-- Congratulation summary screen -->
   <ng-template #finished>
     <div class="word-problem-wrapper finished">
-      <h3>All questions done!</h3>
-      <p>Your score: {{ score }}</p>
+      <img src="assets/congrats-cartoon.gif" alt="Congrats" class="congrats-img"/>
+      <h3>Congratulations, {{ username }}! 🎉</h3>
+      <p>You completed the quiz. Your score: <b>{{ score }}</b></p>
+      <div class="fun-message">
+        You’re a Math Star! 🌟<br>
+        Keep learning and having fun!
+      </div>
     </div>
   </ng-template>
 </div>

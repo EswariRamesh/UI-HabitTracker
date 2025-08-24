@@ -5,15 +5,18 @@
       <i class="fas fa-book-open"></i>
     </div>
     <nav>
-      <a href="#" class="menu-item active" (click)="showUnderDevelopment($event)">
-        <i class="fas fa-gamepad"></i> Games
+      <a href="#" class="menu-item" [class.active]="showBadgesEarned" (click)="openBadgesEarned($event)">
+        <i class="fas fa-trophy"></i> Badges Earned
       </a>
-      <a href="#" class="menu-item" (click)="showUnderDevelopment($event)">
-        <i class="fas fa-book"></i> Stories
+
+      <a href="#" class="menu-item" [class.active]="showProgressReport" (click)="openProgressReport($event)">
+        <i class="fas fa-chart-bar"></i> Progress Report
       </a>
+
       <a href="#" class="menu-item" (click)="showUnderDevelopment($event)">
         <i class="fas fa-user"></i> Profile
       </a>
+
       <a href="#" class="menu-item" (click)="logout($event)">
         <i class="fas fa-sign-out-alt"></i> Logout
       </a>
@@ -23,17 +26,42 @@
   <!-- Main Content -->
   <main class="main-content">
     <header class="header">
-      <h1>{{ showWordProblem ? 'Story Quizzes' : 'Dashboard' }}</h1>
-      <span class="welcome">Welcome, {{ userName }}</span>
-    </header>
+  <div class="header-left">
+    <!-- Back arrow only shows when inside a section -->
+    <button *ngIf="showWordProblem || showStoryTelling || showBadgesEarned || showProgressReport"
+            (click)="goBackToDashboard()"
+            class="back-icon-btn">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <h1>
+      <ng-container *ngIf="showWordProblem">Story Quizzes</ng-container>
+      <ng-container *ngIf="showStoryTelling">Story Telling</ng-container>
+      <ng-container *ngIf="showBadgesEarned">Badges Earned</ng-container>
+      <ng-container *ngIf="showProgressReport">Progress Report</ng-container>
+      <ng-container *ngIf="!showWordProblem && !showStoryTelling && !showBadgesEarned && !showProgressReport">
+        Dashboard
+      </ng-container>
+    </h1>
+  </div>
+
+  <span class="welcome">Welcome, {{ userName }}</span>
+</header>
+
+    <!-- Back to Dashboard button (only when not on Dashboard) -->
+    <!-- <button *ngIf="showWordProblem || showStoryTelling || showBadgesEarned || showProgressReport"
+            (click)="goBackToDashboard()"
+            class="back-btn">
+      ← Back to Dashboard
+    </button> -->
 
     <!-- Under development message -->
     <div *ngIf="underDevelopmentMessage" class="under-development-message">
       {{ underDevelopmentMessage }}
     </div>
 
-    <!-- Tiles Section - only when NOT in quiz -->
-    <section class="tiles" *ngIf="!showWordProblem">
+    <!-- Tiles Section - only when NOT in another section -->
+    <section class="tiles" *ngIf="!showWordProblem && !showStoryTelling && !showBadgesEarned && !showProgressReport">
       <div class="tile story" (click)="openWordProblem()">
         <i class="fas fa-book"></i>
         <h2>Story Quizzes</h2>
@@ -44,19 +72,30 @@
         <h2>Math Games</h2>
         <p>Math Fun</p>
       </div>
-      <div class="tile badges" (click)="showUnderDevelopment($event)">
-        <i class="fas fa-trophy"></i>
-        <h2>Badges Earned</h2>
-      </div>
-      <div class="tile progress" (click)="showUnderDevelopment($event)">
+      <div class="tile progress" (click)="openStoryTelling()">
         <i class="fas fa-chart-bar"></i>
-        <h2>Progress Report</h2>
+        <h2>Story Telling</h2>
       </div>
     </section>
 
     <!-- Quiz View -->
     <div *ngIf="showWordProblem" class="quiz-wrapper">
       <app-word-problem></app-word-problem>
+    </div>
+
+    <!-- StoryTelling View -->
+    <div *ngIf="showStoryTelling" class="quiz-wrapper">
+      <app-story-telling></app-story-telling>
+    </div>
+
+    <!-- Badges Earned View -->
+    <div *ngIf="showBadgesEarned" class="badges-wrapper">
+      <app-badge-earned></app-badge-earned>
+    </div>
+
+    <!-- Progress Report View -->
+    <div *ngIf="showProgressReport" class="quiz-wrapper">
+      <app-progress-report></app-progress-report>
     </div>
   </main>
 </div>
